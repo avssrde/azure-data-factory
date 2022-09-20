@@ -1,0 +1,15 @@
+{
+	"name": "ls_akv_mui_fs_devtst_eastus2_001",
+	"properties": {
+		"description": "This Linked service is used to connect with AZURE Key vault using User Managed Identity.",
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-fs-devtst-eastus2-001.vault.azure.net/",
+			"credential": {
+				"referenceName": "cred-mi-firststep-etl-devtest-eastus2-001",
+				"type": "CredentialReference"
+			}
+		}
+	}
+}

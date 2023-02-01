@@ -9,3 +9,5 @@ Welcome to First Step family, This Repository will help you with all your querie
 - [Limitations](https://github.com/FirstStep029/auzre-data-factory/blob/master/docs/Limitations.md#limitations)
 - [Resource Creation - [PORTAL]](https://github.com/FirstStep029/auzre-data-factory/blob/master/docs/Resource%20Creation%20-%20%5BPORTAL%5D/create-azure-data-factory.md#create-new-azure-data-factory)
 - [Resource Creation - [CLI]](https://github.com/FirstStep029/auzre-data-factory/blob/master/docs/Resource%20Creation%20-%20%5BCLI%5D/create-azure-data-factory.md#create-new-azure-data-factory)
+- [Linked Service](./docs/Linked%20Services/)
+  - [Azure Blob Storage - [Account Key]](./docs/Linked%20Services/Azure%20Blob%20Storage%20-%20%5BAccount%20Key%5D/create-linked-service-using-account-key.md)

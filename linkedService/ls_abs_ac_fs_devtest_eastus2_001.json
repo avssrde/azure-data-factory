@@ -1,0 +1,21 @@
+{
+	"name": "ls_abs_ac_fs_devtest_eastus2_001",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_akv_msi_fs_devtst_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "kvs-safsblbdevtesteastus2001-conn-string"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

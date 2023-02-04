@@ -2,7 +2,7 @@
 	"name": "ds_abs_rw_csv",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
+			"referenceName": "ls_abs_sas_fs_devtest_eastus2_001",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {

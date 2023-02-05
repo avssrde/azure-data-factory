@@ -35,18 +35,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/cred-mi-firststep-etl-devtest-eastus2-001')]",
-			"type": "Microsoft.DataFactory/factories/credentials",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "ManagedIdentity",
-				"typeProperties": {
-					"resourceId": "/subscriptions/34df2efa-acfb-45c1-b568-cbdd34705e67/resourcegroups/rg-firststep-devtest-001/providers/Microsoft.ManagedIdentity/userAssignedIdentities/mi-firststep-etl-devtest-eastus2-001"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ls_akv_mui_fs_devtst_eastus2_001')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -65,6 +53,18 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/credentials/cred-mi-firststep-etl-devtest-eastus2-001')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/cred-mi-firststep-etl-devtest-eastus2-001')]",
+			"type": "Microsoft.DataFactory/factories/credentials",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {
+					"resourceId": "/subscriptions/34df2efa-acfb-45c1-b568-cbdd34705e67/resourcegroups/rg-firststep-devtest-001/providers/Microsoft.ManagedIdentity/userAssignedIdentities/mi-firststep-etl-devtest-eastus2-001"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }

@@ -11,6 +11,12 @@
 		"ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
 			"value": "https://kv-fs-devtst-eastus2-001.vault.azure.net/"
 		},
+		"ls_abs_ak_fs_devtest_eastus2_001_properties_typeProperties_connectionString_secretName": {
+			"value": "kvs-safsblbdevtesteastus2001-conn-string"
+		},
+		"ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName": {
+			"value": "kvs-safsblbdevtesteastus2001-account-sas-uri-full"
+		},
 		"containerUri": {
 			"value": ""
 		},

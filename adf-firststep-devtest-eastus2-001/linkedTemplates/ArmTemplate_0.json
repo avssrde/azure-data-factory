@@ -14,6 +14,14 @@
 		"ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://kv-fs-devtst-eastus2-001.vault.azure.net/"
+		},
+		"ls_abs_ak_fs_devtest_eastus2_001_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "kvs-safsblbdevtesteastus2001-conn-string"
+		},
+		"ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName": {
+			"type": "string",
+			"defaultValue": "kvs-safsblbdevtesteastus2001-account-sas-uri-full"
 		}
 	},
 	"variables": {
@@ -64,6 +72,52 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/credentials/cred-mi-firststep-etl-devtest-eastus2-001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_abs_ak_fs_devtest_eastus2_001')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "This Linked Service is used to connect with Azure BLOB Storage using Azure Key Vault Securely.",
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ls_akv_msi_fs_devtst_eastus2_001",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('ls_abs_ak_fs_devtest_eastus2_001_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_akv_msi_fs_devtst_eastus2_001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_abs_acc_sas_fs_devtest_eastus2_001')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "This Linked Service is used to connect with Azure Blob Storage using Account SAS URI securely via Azure Key Vault.",
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"sasUri": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ls_akv_msi_fs_devtst_eastus2_001",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_akv_msi_fs_devtst_eastus2_001')]"
 			]
 		}
 	]

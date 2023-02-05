@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-firststep-devtest-eastus2-001"
+		},
+		"ls_akv_msi_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
+			"value": "https://kv-fs-devtst-eastus2-001.vault.azure.net/"
+		},
+		"ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
+			"value": "https://kv-fs-devtst-eastus2-001.vault.azure.net/"
+		}
+	}
+}

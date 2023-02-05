@@ -1,0 +1,18 @@
+{
+	"name": "ls_abs_acc_sas_fs_devtest_eastus2_001",
+	"properties": {
+		"description": "This Linked Service is used to connect with Azure Blob Storage using Account SAS URI securely via Azure Key Vault.",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"sasUri": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_akv_msi_fs_devtst_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "kvs-safsblbdevtesteastus2001-account-sas-uri-full"
+			}
+		}
+	}
+}

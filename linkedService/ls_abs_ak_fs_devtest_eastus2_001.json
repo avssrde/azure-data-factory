@@ -1,0 +1,18 @@
+{
+	"name": "ls_abs_ak_fs_devtest_eastus2_001",
+	"properties": {
+		"description": "This Linked Service is used to connect with Azure BLOB Storage using Azure Key Vault Securely.",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_akv_msi_fs_devtst_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "kvs-safsblbdevtesteastus2001-conn-string"
+			}
+		}
+	}
+}

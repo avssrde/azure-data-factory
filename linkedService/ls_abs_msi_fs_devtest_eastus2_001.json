@@ -1,0 +1,17 @@
+{
+	"name": "ls_abs_msi_fs_devtest_eastus2_001",
+	"properties": {
+		"parameters": {
+			"ls_prm_service_endpoipnt": {
+				"type": "string",
+				"defaultValue": "https://safsblbdevtesteastus2001.blob.core.windows.net/"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "@{linkedService().ls_prm_service_endpoipnt}",
+			"accountKind": "StorageV2"
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "ls_abs_sp_fs_devtest_eastus2_001",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://safsblbdevtesteastus2001.blob.core.windows.net/",
+			"credential": {
+				"referenceName": "cred-sp-firststep-etl-devtest-eastus2-001",
+				"type": "CredentialReference"
+			},
+			"accountKind": "StorageV2"
+		}
+	}
+}

@@ -7,6 +7,26 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-firststep-devtest-eastus2-001"
 		},
+		"ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName": {
+			"type": "string",
+			"defaultValue": "kvs-safsblbdevtesteastus2001-account-sas-uri-full"
+		},
+		"ls_abs_ak_fs_devtest_eastus2_001_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "kvs-safsblbdevtesteastus2001-conn-string"
+		},
+		"ls_abs_msi_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "@{linkedService().ls_prm_service_endpoipnt}"
+		},
+		"ls_abs_mui_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "@{linkedService().ls_prm_service_endpoint}"
+		},
+		"ls_abs_sp_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://safsblbdevtesteastus2001.blob.core.windows.net/"
+		},
 		"ls_akv_msi_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://kv-fs-devtst-eastus2-001.vault.azure.net/"
@@ -14,14 +34,6 @@
 		"ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://kv-fs-devtst-eastus2-001.vault.azure.net/"
-		},
-		"ls_abs_ak_fs_devtest_eastus2_001_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "kvs-safsblbdevtesteastus2001-conn-string"
-		},
-		"ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName": {
-			"type": "string",
-			"defaultValue": "kvs-safsblbdevtesteastus2001-account-sas-uri-full"
 		},
 		"containerUri": {
 			"type": "string",
@@ -50,17 +62,26 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"ls_abs_msi_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('ls_abs_msi_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint')]"
+					},
 					"ls_akv_msi_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
 						"value": "[parameters('ls_akv_msi_fs_devtst_eastus2_001_properties_typeProperties_baseUrl')]"
 					},
-					"ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
-						"value": "[parameters('ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl')]"
+					"ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName": {
+						"value": "[parameters('ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName')]"
 					},
 					"ls_abs_ak_fs_devtest_eastus2_001_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('ls_abs_ak_fs_devtest_eastus2_001_properties_typeProperties_connectionString_secretName')]"
 					},
-					"ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName": {
-						"value": "[parameters('ls_abs_acc_sas_fs_devtest_eastus2_001_properties_typeProperties_sasUri_secretName')]"
+					"ls_abs_mui_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('ls_abs_mui_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint')]"
+					},
+					"ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl": {
+						"value": "[parameters('ls_akv_mui_fs_devtst_eastus2_001_properties_typeProperties_baseUrl')]"
+					},
+					"ls_abs_sp_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('ls_abs_sp_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint')]"
 					}
 				}
 			},

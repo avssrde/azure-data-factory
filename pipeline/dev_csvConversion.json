@@ -166,7 +166,7 @@
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\"",
-							"rowDelimiter": "\\r,\\n"
+							"rowDelimiter": "\"\\r\\n\""
 						}
 					}
 				]

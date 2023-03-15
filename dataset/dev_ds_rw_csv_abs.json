@@ -30,6 +30,10 @@
 			},
 			"fileName": {
 				"type": "string"
+			},
+			"rowDelimiter": {
+				"type": "string",
+				"defaultValue": "\\r,\\n"
 			}
 		},
 		"folder": {

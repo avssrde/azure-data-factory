@@ -36,6 +36,9 @@
 				"defaultValue": "\""
 			}
 		},
+		"folder": {
+			"name": "Development/blobStorage"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

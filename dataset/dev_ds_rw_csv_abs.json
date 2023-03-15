@@ -16,10 +16,6 @@
 				"type": "string",
 				"defaultValue": ","
 			},
-			"rowDelimiter": {
-				"type": "string",
-				"defaultValue": "\\r\\n"
-			},
 			"encoding": {
 				"type": "string",
 				"defaultValue": "utf-8"
@@ -59,10 +55,6 @@
 			},
 			"columnDelimiter": {
 				"value": "@dataset().columnDelimiter",
-				"type": "Expression"
-			},
-			"rowDelimiter": {
-				"value": "@dataset().rowDelimiter",
 				"type": "Expression"
 			},
 			"encodingName": {

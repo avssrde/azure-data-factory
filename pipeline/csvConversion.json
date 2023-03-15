@@ -70,14 +70,9 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_rwm_csv_abs",
+						"referenceName": "ds_rw_csv_abs",
 						"type": "DatasetReference",
 						"parameters": {
-							"containerName": "data",
-							"filePath": {
-								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv-part-files')",
-								"type": "Expression"
-							},
 							"columnDelimiter": ",",
 							"rowDelimiter": "\\r\\n",
 							"encoding": "utf-8",

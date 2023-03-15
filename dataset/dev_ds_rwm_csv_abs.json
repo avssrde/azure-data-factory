@@ -54,6 +54,10 @@
 				"value": "@dataset().columnDelimiter",
 				"type": "Expression"
 			},
+			"rowDelimiter": {
+				"value": "@dataset().rowDelimiter",
+				"type": "Expression"
+			},
 			"encodingName": {
 				"value": "@dataset().encoding",
 				"type": "Expression"

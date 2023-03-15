@@ -53,7 +53,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": "data",
-							"filePath": "table_1",
+							"filePath": {
+								"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+								"type": "Expression"
+							},
 							"columnDelimiter": ",",
 							"rowDelimiter": "\\r\\n",
 							"encoding": "utf-8",

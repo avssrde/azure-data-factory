@@ -56,7 +56,6 @@
 						"parameters": {
 							"containerName": "data",
 							"filePath": "table_1",
-							"fileName": "part-0_10000.csv",
 							"columnDelimiter": ",",
 							"rowDelimiter": "\\r\\n",
 							"encoding": "utf-8",

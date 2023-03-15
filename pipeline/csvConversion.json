@@ -34,6 +34,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"maxRowsPerFile": 100,
+							"fileNamePrefix": "dataset",
 							"quoteAllText": true,
 							"fileExtension": ".txt"
 						}

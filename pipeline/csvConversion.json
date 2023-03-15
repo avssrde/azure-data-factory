@@ -49,7 +49,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_rw_abs_csv",
+						"referenceName": "ds_rw_csv_abs",
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": "data",
@@ -68,7 +68,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_rw_abs_csv",
+						"referenceName": "ds_rw_csv_abs",
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": "data",

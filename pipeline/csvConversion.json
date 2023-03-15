@@ -70,7 +70,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": "data",
-							"filePath": "COMMA-DELIMITED-CSV",
+							"filePath": {
+								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv')",
+								"type": "Expression"
+							},
 							"fileName": "dataset.csv",
 							"columnDelimiter": ",",
 							"rowDelimiter": "\\r\\n",
@@ -82,6 +85,11 @@
 				]
 			}
 		],
+		"parameters": {
+			"runMode": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "development"
 		},

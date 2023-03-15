@@ -33,8 +33,6 @@
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
-							"maxRowsPerFile": 100,
-							"fileNamePrefix": "dataset",
 							"quoteAllText": true,
 							"fileExtension": ".txt"
 						}
@@ -60,7 +58,8 @@
 							"rowDelimiter": "\\r\\n",
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
-							"quotedCharacter": "\""
+							"quotedCharacter": "\"",
+							"fileName": "part-0_10000.csv"
 						}
 					}
 				],
@@ -78,7 +77,8 @@
 							"rowDelimiter": "\\r\\n",
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
-							"quotedCharacter": "\""
+							"quotedCharacter": "\"",
+							"fileName": "dataset.csv"
 						}
 					}
 				]

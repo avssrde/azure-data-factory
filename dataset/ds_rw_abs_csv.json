@@ -31,6 +31,9 @@
 			"quotedCharacter": {
 				"type": "string",
 				"defaultValue": "\""
+			},
+			"fileName": {
+				"type": "string"
 			}
 		},
 		"folder": {
@@ -41,6 +44,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().fileName",
+					"type": "Expression"
+				},
 				"folderPath": {
 					"value": "@dataset().filePath",
 					"type": "Expression"

@@ -53,7 +53,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": "data",
-							"filePath": "table_q",
+							"filePath": "table_1",
 							"fileName": "part-0_10000.csv",
 							"columnDelimiter": ",",
 							"rowDelimiter": "\\r\\n",

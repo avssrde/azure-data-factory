@@ -238,7 +238,7 @@
 						"parameters": {
 							"containerName": "data",
 							"filePath": {
-								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv')",
+								"value": "@concat(pipeline().parameters.runMode, '/pipe-delimited-csv')",
 								"type": "Expression"
 							},
 							"columnDelimiter": "|",
@@ -323,7 +323,7 @@
 						"parameters": {
 							"containerName": "data",
 							"filePath": {
-								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv-part-files')",
+								"value": "@concat(pipeline().parameters.runMode, '/pipe-delimited-csv-part-files')",
 								"type": "Expression"
 							},
 							"columnDelimiter": "|",

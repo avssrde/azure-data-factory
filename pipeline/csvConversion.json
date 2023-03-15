@@ -33,6 +33,8 @@
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
+							"maxRowsPerFile": 100,
+							"fileNamePrefix": "dataset",
 							"quoteAllText": true,
 							"fileExtension": ".txt"
 						}
@@ -68,20 +70,19 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_rw_csv_abs",
+						"referenceName": "ds_rwm_csv_abs",
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": "data",
 							"filePath": {
-								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv')",
+								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv-part-files')",
 								"type": "Expression"
 							},
 							"columnDelimiter": ",",
 							"rowDelimiter": "\\r\\n",
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
-							"quotedCharacter": "\"",
-							"fileName": "dataset.csv"
+							"quotedCharacter": "\""
 						}
 					}
 				]

@@ -1,0 +1,81 @@
+{
+	"name": "ds_rw_abs_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"containerName": {
+				"type": "string"
+			},
+			"filePath": {
+				"type": "string"
+			},
+			"fileName": {
+				"type": "string"
+			},
+			"columnDelimiter": {
+				"type": "string",
+				"defaultValue": ","
+			},
+			"rowDelimiter": {
+				"type": "string",
+				"defaultValue": "\\r\\n"
+			},
+			"encoding": {
+				"type": "string",
+				"defaultValue": "utf-8"
+			},
+			"escapeCharacter": {
+				"type": "string",
+				"defaultValue": "\\"
+			},
+			"quotedCharacter": {
+				"type": "string",
+				"defaultValue": "\""
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().fileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().filePath",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().containerName",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": {
+				"value": "@dataset().columnDelimiter",
+				"type": "Expression"
+			},
+			"rowDelimiter": {
+				"value": "@dataset().rowDelimiter",
+				"type": "Expression"
+			},
+			"encodingName": {
+				"value": "@dataset().encoding",
+				"type": "Expression"
+			},
+			"escapeChar": {
+				"value": "@dataset().escapeCharacter",
+				"type": "Expression"
+			},
+			"firstRowAsHeader": true,
+			"quoteChar": {
+				"value": "@dataset().quotedCharacter",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}

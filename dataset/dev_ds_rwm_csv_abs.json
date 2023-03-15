@@ -27,6 +27,10 @@
 			"quotedCharacter": {
 				"type": "string",
 				"defaultValue": "\""
+			},
+			"rowDelimiter": {
+				"type": "string",
+				"defaultValue": "\\r,\\n"
 			}
 		},
 		"folder": {

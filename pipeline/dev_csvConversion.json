@@ -61,7 +61,8 @@
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\"",
-							"fileName": "part-0_10000.csv"
+							"fileName": "part-0_10000.csv",
+							"rowDelimiter": "\\r,\\n"
 						}
 					}
 				],
@@ -79,7 +80,8 @@
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\"",
-							"fileName": "dataset.csv"
+							"fileName": "dataset.csv",
+							"rowDelimiter": "\\r,\\n"
 						}
 					}
 				]
@@ -145,7 +147,8 @@
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\"",
-							"fileName": "part-0_10000.csv"
+							"fileName": "part-0_10000.csv",
+							"rowDelimiter": "\\r,\\n"
 						}
 					}
 				],
@@ -162,7 +165,8 @@
 							"columnDelimiter": ",",
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
-							"quotedCharacter": "\""
+							"quotedCharacter": "\"",
+							"rowDelimiter": "\\r,\\n"
 						}
 					}
 				]
@@ -245,7 +249,8 @@
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\"",
-							"fileName": "dataset.csv"
+							"fileName": "dataset.csv",
+							"rowDelimiter": "\\r,\\n"
 						}
 					}
 				]
@@ -329,7 +334,8 @@
 							"columnDelimiter": "|",
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
-							"quotedCharacter": "\""
+							"quotedCharacter": "\"",
+							"rowDelimiter": "\\r,\\n"
 						}
 					}
 				]

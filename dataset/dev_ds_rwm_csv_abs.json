@@ -27,10 +27,6 @@
 			"quotedCharacter": {
 				"type": "string",
 				"defaultValue": "\""
-			},
-			"rowDelimiter": {
-				"type": "string",
-				"defaultValue": "\\r,\\n"
 			}
 		},
 		"folder": {
@@ -52,10 +48,6 @@
 			},
 			"columnDelimiter": {
 				"value": "@dataset().columnDelimiter",
-				"type": "Expression"
-			},
-			"rowDelimiter": {
-				"value": "@dataset().rowDelimiter",
 				"type": "Expression"
 			},
 			"encodingName": {

@@ -74,7 +74,6 @@
 								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv')",
 								"type": "Expression"
 							},
-							"fileName": "dataset.csv",
 							"columnDelimiter": ",",
 							"rowDelimiter": "\\r\\n",
 							"encoding": "utf-8",

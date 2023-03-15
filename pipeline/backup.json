@@ -1,9 +1,0 @@
-{
-	"name": "backup",
-	"properties": {
-		"folder": {
-			"name": "development"
-		},
-		"annotations": []
-	}
-}

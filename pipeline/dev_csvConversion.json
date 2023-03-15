@@ -81,7 +81,7 @@
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\"",
 							"fileName": "dataset.csv",
-							"rowDelimiter": "\r\n"
+							"rowDelimiter": "\r,\n"
 						}
 					}
 				]
@@ -89,7 +89,8 @@
 		],
 		"parameters": {
 			"runMode": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "development"
 			}
 		},
 		"folder": {

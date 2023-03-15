@@ -1,0 +1,86 @@
+{
+	"name": "csvConversion",
+	"properties": {
+		"activities": [
+			{
+				"name": "COMMA-DELIMITED-CSV",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_rw_abs_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "data",
+							"filePath": "table_q",
+							"fileName": "part-0_10000.csv",
+							"columnDelimiter": ",",
+							"rowDelimiter": "\\r\\n",
+							"encoding": "utf-8",
+							"escapeCharacter": "\\",
+							"quotedCharacter": "\""
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_rw_abs_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "data",
+							"filePath": "COMMA-DELIMITED-CSV",
+							"fileName": "dataset.csv",
+							"columnDelimiter": ",",
+							"rowDelimiter": "\\r\\n",
+							"encoding": "utf-8",
+							"escapeCharacter": "\\",
+							"quotedCharacter": "\""
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

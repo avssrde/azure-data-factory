@@ -1,5 +1,5 @@
 {
-	"name": "dev_utils_comma_delimited_files",
+	"name": "dev_commaDelimited",
 	"properties": {
 		"activities": [
 			{
@@ -170,11 +170,12 @@
 		],
 		"parameters": {
 			"runMode": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "development"
 			}
 		},
 		"folder": {
-			"name": "development/utils"
+			"name": "development"
 		},
 		"annotations": []
 	}

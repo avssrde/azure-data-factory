@@ -143,7 +143,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "dev_ds_rw_avro_abs",
+						"referenceName": "dev_ds_rwm_avro_abs",
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": "data",

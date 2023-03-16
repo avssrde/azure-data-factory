@@ -1,0 +1,171 @@
+{
+	"name": "dev_avro",
+	"properties": {
+		"activities": [
+			{
+				"name": "AVRO",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AvroSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "AvroWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "dev_ds_rw_csv_abs",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "data",
+							"filePath": {
+								"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+								"type": "Expression"
+							},
+							"columnDelimiter": ",",
+							"encoding": "utf-8",
+							"escapeCharacter": "\\",
+							"quotedCharacter": "\"",
+							"fileName": "part-0_10000.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dev_ds_rw_avro_abs",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "data",
+							"filePath": {
+								"value": "@concat(pipeline().parameters.runMode, '/avro-file')",
+								"type": "Expression"
+							},
+							"fileName": "dataset.parquet",
+							"compressionType": "snappy"
+						}
+					}
+				]
+			},
+			{
+				"name": "AVRO-PART-FILES",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AvroSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "AvroWriteSettings",
+							"maxRowsPerFile": 100
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "dev_ds_rw_csv_abs",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "data",
+							"filePath": {
+								"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+								"type": "Expression"
+							},
+							"columnDelimiter": ",",
+							"encoding": "utf-8",
+							"escapeCharacter": "\\",
+							"quotedCharacter": "\"",
+							"fileName": "part-0_10000.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dev_ds_rw_avro_abs",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "data",
+							"filePath": {
+								"value": "@concat(pipeline().parameters.runMode, '/avro-part-files')",
+								"type": "Expression"
+							},
+							"compressionType": "snappy"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"runMode": {
+				"type": "string",
+				"defaultValue": "development"
+			}
+		},
+		"folder": {
+			"name": "development"
+		},
+		"annotations": []
+	}
+}

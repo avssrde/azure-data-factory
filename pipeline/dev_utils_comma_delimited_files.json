@@ -1,9 +1,9 @@
 {
-	"name": "dev_DataPreparation",
+	"name": "dev_utils_comma_delimited_files",
 	"properties": {
 		"activities": [
 			{
-				"name": "PIPE-DELIMITED-CSV",
+				"name": "COMMA-DELIMITED-CSV",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -72,10 +72,10 @@
 						"parameters": {
 							"containerName": "data",
 							"filePath": {
-								"value": "@concat(pipeline().parameters.runMode, '/pipe-delimited-csv')",
+								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv')",
 								"type": "Expression"
 							},
-							"columnDelimiter": "|",
+							"columnDelimiter": ",",
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\"",
@@ -85,7 +85,7 @@
 				]
 			},
 			{
-				"name": "PIPE-DELIMITED-CSV-PART-FILES",
+				"name": "COMMA-DELIMITED-CSV-PART-FILES",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -156,10 +156,10 @@
 						"parameters": {
 							"containerName": "data",
 							"filePath": {
-								"value": "@concat(pipeline().parameters.runMode, '/pipe-delimited-csv-part-files')",
+								"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv-part-files')",
 								"type": "Expression"
 							},
-							"columnDelimiter": "|",
+							"columnDelimiter": ",",
 							"encoding": "utf-8",
 							"escapeCharacter": "\\",
 							"quotedCharacter": "\""
@@ -170,12 +170,11 @@
 		],
 		"parameters": {
 			"runMode": {
-				"type": "string",
-				"defaultValue": "development"
+				"type": "string"
 			}
 		},
 		"folder": {
-			"name": "development"
+			"name": "development/utils"
 		},
 		"annotations": []
 	}

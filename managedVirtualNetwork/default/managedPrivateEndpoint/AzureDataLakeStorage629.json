@@ -1,7 +1,0 @@
-{
-	"name": "AzureDataLakeStorage629",
-	"properties": {
-		"privateLinkResourceId": "/subscriptions/34df2efa-acfb-45c1-b568-cbdd34705e67/resourceGroups/rg-firststep-devtest-001/providers/Microsoft.Storage/storageAccounts/safsgen2devtesteus2002",
-		"groupId": "dfs"
-	}
-}

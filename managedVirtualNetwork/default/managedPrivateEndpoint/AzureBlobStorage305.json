@@ -1,0 +1,7 @@
+{
+	"name": "AzureBlobStorage305",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/34df2efa-acfb-45c1-b568-cbdd34705e67/resourceGroups/rg-firststep-devtest-001/providers/Microsoft.Storage/storageAccounts/safsblbdevtesteastus2001",
+		"groupId": "blob"
+	}
+}

@@ -1,5 +1,6 @@
 {
 	"name": "ls_abs_mui_fs_devtest_eastus2_001",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"parameters": {
 			"ls_prm_service_endpoint": {

@@ -1,0 +1,15 @@
+{
+	"name": "adf-firststep-devtest-eastus2-001",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned,UserAssigned",
+		"principalId": "d94ccda4-040e-45d2-af90-18fb657ec827",
+		"tenantId": "10161524-c00e-46c3-95f0-0cde594ebfef",
+		"userAssignedIdentities": {
+			"/subscriptions/34df2efa-acfb-45c1-b568-cbdd34705e67/resourcegroups/rg-firststep-devtest-001/providers/Microsoft.ManagedIdentity/userAssignedIdentities/mi-firststep-etl-devtest-eastus2-001": {
+				"clientId": "723dc0af-bde9-48fb-a183-7e288374b614",
+				"principalId": "5ab98d60-1e6d-4b6c-aebb-be15228cdf9d"
+			}
+		}
+	}
+}

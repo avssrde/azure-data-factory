@@ -1,5 +1,6 @@
 {
 	"name": "ls_akv_msi_fs_devtst_eastus2_001",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"description": "This Linked service is used to connect with AZURE Key vault using System Managed Identity.",
 		"annotations": [],

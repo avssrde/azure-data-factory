@@ -1,5 +1,6 @@
 {
 	"name": "ls_abs_acc_sas_fs_devtest_eastus2_001",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"description": "This Linked Service is used to connect with Azure Blob Storage using Account SAS URI securely via Azure Key Vault.",
 		"annotations": [],

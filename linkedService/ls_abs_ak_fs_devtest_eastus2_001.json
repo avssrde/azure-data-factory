@@ -1,5 +1,6 @@
 {
 	"name": "ls_abs_ak_fs_devtest_eastus2_001",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"description": "This Linked Service is used to connect with Azure BLOB Storage using Azure Key Vault Securely.",
 		"annotations": [],

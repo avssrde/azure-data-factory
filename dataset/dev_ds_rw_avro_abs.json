@@ -21,7 +21,7 @@
 			}
 		},
 		"folder": {
-			"name": "development/blobStorage"
+			"name": "development/blobStorage/test-linked-services"
 		},
 		"annotations": [],
 		"type": "Avro",

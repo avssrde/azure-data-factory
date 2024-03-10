@@ -1,5 +1,5 @@
 {
-	"name": "ds_ads_r_avro",
+	"name": "ds_abs_r_avro",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",

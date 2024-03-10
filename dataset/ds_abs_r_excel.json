@@ -14,6 +14,9 @@
 			},
 			"file_name": {
 				"type": "string"
+			},
+			"sheet_name": {
+				"type": "string"
 			}
 		},
 		"folder": {
@@ -22,6 +25,10 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().sheet_name",
+				"type": "Expression"
+			},
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {

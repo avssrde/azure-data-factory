@@ -1,5 +1,5 @@
 {
-	"name": "ds_abd_r_xml",
+	"name": "ds_abs_r_xml",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",

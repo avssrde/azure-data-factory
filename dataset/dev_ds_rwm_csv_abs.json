@@ -30,7 +30,7 @@
 			}
 		},
 		"folder": {
-			"name": "development/blobStorage/test-linked-services"
+			"name": "blobStorage/linked-services-demo"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

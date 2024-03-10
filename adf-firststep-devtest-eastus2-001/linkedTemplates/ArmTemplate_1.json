@@ -1,0 +1,684 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-firststep-devtest-eastus2-001"
+		},
+		"ls_abs_sp_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://safsblbdevtesteastus2001.blob.core.windows.net/"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"container_name": {
+						"type": "string"
+					},
+					"file_path": {
+						"type": "string"
+					},
+					"file_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "blobStorage/datasets-demo"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().file_path",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().container_name",
+							"type": "Expression"
+						}
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_abs_r_avro')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"container_name": {
+						"type": "string"
+					},
+					"file_path": {
+						"type": "string"
+					},
+					"file_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "blobStorage/datasets-demo"
+				},
+				"annotations": [],
+				"type": "Avro",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().file_path",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().container_name",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_abs_sp_fs_devtest_eastus2_001')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"serviceEndpoint": "[parameters('ls_abs_sp_fs_devtest_eastus2_001_properties_typeProperties_serviceEndpoint')]",
+					"credential": {
+						"referenceName": "cred-sp-firststep-etl-devtest-eastus2-001",
+						"type": "CredentialReference"
+					},
+					"accountKind": "StorageV2"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dev_avro')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "AVRO",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AvroSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "AvroWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "part-0_10000.csv"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dev_ds_rw_avro_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/avro-file')",
+										"type": "Expression"
+									},
+									"fileName": "dataset.parquet",
+									"compressionType": "snappy"
+								}
+							}
+						]
+					},
+					{
+						"name": "AVRO-PART-FILES",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AvroSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "AvroWriteSettings",
+									"maxRowsPerFile": 100
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "part-0_10000.csv"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dev_ds_rwm_avro_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/avro-part-files')",
+										"type": "Expression"
+									},
+									"compressionType": "snappy"
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"runMode": {
+						"type": "string",
+						"defaultValue": "development"
+					}
+				},
+				"folder": {
+					"name": "PREP-WORK"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dev_commaDelimited')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "COMMA-DELIMITED-CSV",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "part-0_10000.csv"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "dataset.csv"
+								}
+							}
+						]
+					},
+					{
+						"name": "COMMA-DELIMITED-CSV-PART-FILES",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"maxRowsPerFile": 100,
+									"fileNamePrefix": "",
+									"quoteAllText": true,
+									"fileExtension": ".csv"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "part-0_10000.csv"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dev_ds_rwm_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/comma-delimited-csv-part-files')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\""
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"runMode": {
+						"type": "string",
+						"defaultValue": "development"
+					}
+				},
+				"folder": {
+					"name": "PREP-WORK"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dev_pipeDelimited')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "PIPE-DELIMITED-CSV",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "part-0_10000.csv"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/pipe-delimited-csv')",
+										"type": "Expression"
+									},
+									"columnDelimiter": "|",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "dataset.csv"
+								}
+							}
+						]
+					},
+					{
+						"name": "PIPE-DELIMITED-CSV-PART-FILES",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"maxRowsPerFile": 100,
+									"fileNamePrefix": "",
+									"quoteAllText": true,
+									"fileExtension": ".csv"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dev_ds_rw_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/table_1')",
+										"type": "Expression"
+									},
+									"columnDelimiter": ",",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\"",
+									"fileName": "part-0_10000.csv"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dev_ds_rwm_csv_abs",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "data",
+									"filePath": {
+										"value": "@concat(pipeline().parameters.runMode, '/pipe-delimited-csv-part-files')",
+										"type": "Expression"
+									},
+									"columnDelimiter": "|",
+									"encoding": "utf-8",
+									"escapeCharacter": "\\",
+									"quotedCharacter": "\""
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"runMode": {
+						"type": "string",
+						"defaultValue": "development"
+					}
+				},
+				"folder": {
+					"name": "PREP-WORK"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}

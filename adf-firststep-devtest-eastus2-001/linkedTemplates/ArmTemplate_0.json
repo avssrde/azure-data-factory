@@ -523,101 +523,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_abs_r_binary')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"container_name": {
-						"type": "string"
-					},
-					"file_path": {
-						"type": "string"
-					},
-					"file_name": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "blobStorage/datasets-demo"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().file_name",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().file_path",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().container_name",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_abs_ak_fs_devtest_eastus2_001')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_abs_r_xml')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"container_name": {
-						"type": "string"
-					},
-					"file_path": {
-						"type": "string"
-					},
-					"file_name": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "blobStorage/datasets-demo"
-				},
-				"annotations": [],
-				"type": "Xml",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().file_name",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().file_path",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().container_name",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_abs_ak_fs_devtest_eastus2_001')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_abs_r_excel')]",
+			"name": "[concat(parameters('factoryName'), '/ds_abs_r_excel_dev')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -640,7 +546,7 @@
 					}
 				},
 				"folder": {
-					"name": "blobStorage/datasets-demo"
+					"name": "blobStorage/datasets-demo/dev"
 				},
 				"annotations": [],
 				"type": "Excel",
@@ -672,7 +578,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_csv')]",
+			"name": "[concat(parameters('factoryName'), '/ds_abs_r_xml_dev')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -692,7 +598,149 @@
 					}
 				},
 				"folder": {
-					"name": "blobStorage/datasets-demo"
+					"name": "blobStorage/datasets-demo/dev"
+				},
+				"annotations": [],
+				"type": "Xml",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().file_path",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().container_name",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_abs_ak_fs_devtest_eastus2_001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_avro_dev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"container_name": {
+						"type": "string"
+					},
+					"file_path": {
+						"type": "string"
+					},
+					"file_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "blobStorage/datasets-demo/dev"
+				},
+				"annotations": [],
+				"type": "Avro",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().file_path",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().container_name",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_abs_ak_fs_devtest_eastus2_001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_binary_dev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"container_name": {
+						"type": "string"
+					},
+					"file_path": {
+						"type": "string"
+					},
+					"file_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "blobStorage/datasets-demo/dev"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().file_path",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().container_name",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_abs_ak_fs_devtest_eastus2_001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_csv_dev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"container_name": {
+						"type": "string"
+					},
+					"file_path": {
+						"type": "string"
+					},
+					"file_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "blobStorage/datasets-demo/dev"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -724,7 +772,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_json')]",
+			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_json_dev')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -744,7 +792,7 @@
 					}
 				},
 				"folder": {
-					"name": "blobStorage/datasets-demo"
+					"name": "blobStorage/datasets-demo/dev"
 				},
 				"annotations": [],
 				"type": "Json",
@@ -766,54 +814,6 @@
 					}
 				},
 				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_abs_ak_fs_devtest_eastus2_001')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_abs_rw_orc')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"container_name": {
-						"type": "string"
-					},
-					"file_path": {
-						"type": "string"
-					},
-					"file_name": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "blobStorage/datasets-demo"
-				},
-				"annotations": [],
-				"type": "Orc",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().file_name",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().file_path",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().container_name",
-							"type": "Expression"
-						}
-					},
-					"enablePhysicalSchema": true
-				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_abs_ak_fs_devtest_eastus2_001')]"

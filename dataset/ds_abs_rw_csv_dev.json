@@ -17,7 +17,7 @@
 			}
 		},
 		"folder": {
-			"name": "blobStorage/datasets-demo"
+			"name": "blobStorage/datasets-demo/dev"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

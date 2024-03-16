@@ -5,20 +5,52 @@
 			"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"container_name": {
+				"type": "string"
+			},
+			"file_path": {
+				"type": "string"
+			},
+			"file_name": {
+				"type": "string"
+			},
+			"sheet_name": {
+				"type": "string"
+			},
+			"range": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "blobStorage/datasets-demo/demo"
 		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Sheet1",
+			"sheetName": {
+				"value": "@dataset().sheet_name",
+				"type": "Expression"
+			},
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "dataset.xlsx",
-				"folderPath": "in-bound/excel-data",
-				"container": "data"
+				"fileName": {
+					"value": "@dataset().file_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().file_path",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().container_name",
+					"type": "Expression"
+				}
 			},
-			"range": "",
+			"range": {
+				"value": "@dataset().range",
+				"type": "Expression"
+			},
 			"firstRowAsHeader": false
 		},
 		"schema": [

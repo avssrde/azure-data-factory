@@ -5,6 +5,26 @@
 			"referenceName": "ls_abs_ak_fs_devtest_eastus2_001",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"container_name": {
+				"type": "string"
+			},
+			"file_path": {
+				"type": "string"
+			},
+			"file_name": {
+				"type": "string"
+			},
+			"column_delimiter": {
+				"type": "string"
+			},
+			"quote_char": {
+				"type": "string"
+			},
+			"escape_char": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "blobStorage/datasets-demo/demo"
 		},
@@ -13,14 +33,32 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "dataset.csv",
-				"folderPath": "in-bound/csv-data",
-				"container": "data"
+				"fileName": {
+					"value": "@dataset().file_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().file_path",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().container_name",
+					"type": "Expression"
+				}
 			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
+			"columnDelimiter": {
+				"value": "@dataset().column_delimiter",
+				"type": "Expression"
+			},
+			"escapeChar": {
+				"value": "@dataset().escape_char",
+				"type": "Expression"
+			},
 			"firstRowAsHeader": true,
-			"quoteChar": "\""
+			"quoteChar": {
+				"value": "@dataset().quote_char",
+				"type": "Expression"
+			}
 		},
 		"schema": [
 			{

@@ -168,8 +168,8 @@
 				]
 			},
 			{
-				"name": "Azure Function1",
-				"type": "AzureFunctionActivity",
+				"name": "Azure Data Explorer Command1",
+				"type": "AzureDataExplorerCommand",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -178,7 +178,10 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"commandTimeout": "00:20:00"
+				}
 			}
 		],
 		"parameters": {

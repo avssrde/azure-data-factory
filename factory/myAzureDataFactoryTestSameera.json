@@ -1,0 +1,9 @@
+{
+	"name": "myAzureDataFactoryTestSameera",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "fe7993fa-8678-46eb-b794-a54bd20bc368",
+		"tenantId": "d5a9321e-9efd-4c28-ab61-9e6a315d3dfd"
+	}
+}
